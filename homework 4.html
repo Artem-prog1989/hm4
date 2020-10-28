@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        ex№1(разложи на десятки)
+       function numToObj() {
+        var obj ={};
+        var number = +prompt("введите число в диапазоне 0-999");
+        if (!isFinite(number)||isNaN(number)||(number<0)||(number>999)) {
+            return null;
+        } else {
+        var arr = String(number).split("");
+        for(var i =0; i<arr.length; i++) {
+            obj.thousandRank=arr[0];
+            obj.hundretRank=arr[1];
+            obj.edRank=arr[2];
+            }
+              return obj;
+        }
+      
+    }
+alert(numToObj());    
+        
+       ex2(корявая доработка) 
+        var works = {
+    a00:'Вы живёте в тихой и уютной деревеньке на окрайне страны.\n' +
+    'Здесь есть практчески всё: речка, лес, горы, озеро, луга и поля, есть даже школа в соседнем селе.\n' +
+    'Сейчас начало лета, воскресенье, раннее утро, Вы просыпаетесь и собираетесь ...\n',
+    a0: 2,
+    a1: '1 - Поспать до обеда\n',
+    a2: '2 - Пойти прогуляться\n',
+    b00: 'Вы решили поспать до обеда.\n' +
+    'После того как Вы проснулись первое, что вы ощутили, это приятный запах, который шёл с кухни.\n' +
+    'После Вы замечаете, какая за окном прекрасная погода, и Вы думаете ...\n',
+    b0: 2,
+    b1: '1 - Пойти прогуляться\n',
+    b2: '2 - Пойти пообедать\n',
+    c00: 'Вы решили пойти прогуляться.\n' +
+    'Вы выходите из своего дома и видите прекрасный рассвет, блики солнца так и играют на озёрной глади.\n' +
+    'Вы решаете дойти до озера, полюбоваться его красотойю\n' +
+    'С одной стороны тропинки Вы видите пшеничное поле, за которым веднеется лес.\n' +
+    'С другой стороны течёт речка, а в далеке виднеются горы.\n' +
+    'Вы наслаждаетесь пейзажами и не замечаете как летит время.\n' +
+    'Домой Вы приходите только к обеду, но до обеда ещё есть время и Вы решаете ...\n',
+    c0: 2,
+    c1: '1 - Подождать обед в столовой\n',
+    c2: '2 - Поколоть дров перед обедом\n',
+    d00: 'Здесь пишем текст повествования.\n' +
+    'Потом пишем несколько действий, например, два\n',
+    d0: 2, // кол-во ответов
+    d1: '1 - 1-й ответ\n',
+    d2: '2 - 2-й ответ\n',
+};
+var event, ok;
+var answers = [];
+var step_1 ={};
+var step_2 ={};
+var step_3 ={};
+do {//Выводим первый вопрос
+    ok = false;
+    event = +prompt(works.a00 + works.a1 + works.a2 + '-1 - Выход из игры');
+   
+    if (event == -1) {
+        break;
+    }
+    else {
+        ok = isAnswer(works.a0, event);
+    }
+} while (!ok);
+step_1.question=works.a00;
+if(event==1) {
+    step_1.answer=works.a1;
+} else if(event==2) {
+    step_1.answer=works.a2;
+} else {
+    step_1.answer=-1
+}
+        
+answers[0]=step_1;
+switch (event) {
+    case 1: // Первое действие  - если в первом окне ввели 1 то открываем серию окон - окно 2
+        do {
+            ok = false;
+            event = +prompt(works.b00 + works.b1 + works.b2 + '-1 - Выход из игры');
+            if (event == -1) {
+                break;
+            }
+            else {
+                ok = isAnswer(works.b0, event);
+            }
+        } while (!ok);
+        step_2.question=works.b00;
+        if(event==1) {
+            step_2.answer=works.b1;
+        } else if (event==2) {
+            step_2.answer=works.b2;
+        } else {
+            step_2.answer=-1;
+        }
+        answers[1]=step_2;
+        switch (event) {
+            case 1: // Второе действие, если во 2 окне ввели 1 то переходим на 4 окно
+                do {
+                    ok = false;
+                    event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+                    if (event == -1) {
+                        break;
+                    }
+                    else {
+                        ok = isAnswer(works.d0, event);
+                    }
+                } while (!ok);
+                    step_3.question=works.d00;
+                    if(event==1) {
+                        step_3.answer=works.d1;
+                    } else if (event==2) {
+                        step_3.answer=works.d2;
+                    } else {
+                        step_3.answer=-1;
+                    }
+                answers[2]=step_3;
+                break;
+            case 2: // Второе действие   Если ввели 2 то также переходим на 4 окно
+                do {
+                    ok = false;
+                    event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+                    if (event == -1) {
+                        break;
+                    }
+                    else {
+                        ok = isAnswer(works.d0, event);
+                    }
+                } while (!ok);
+                step_3.question=works.d00;
+                    if(event==1) {
+                        step_3.answer=works.d1;
+                    } else if (event==2) {
+                        step_3.answer=works.d2;
+                    } else {
+                        step_3.answer=-1;
+                    }
+                answers[2]=step_3;
+                break;
+            case -1: // Второе действие
+                break;
+            default:
+                alert('Ошибка');
+        }
+        break;
+    case 2: // Первое действие    Если в 1 окне ввели 2 то переходим к 3 окну
+        do {
+            ok = false;
+            event = +prompt(works.c00 + works.c1 + works.c2 + '-1 - Выход из игры');
+            if (event == -1) {
+                break;
+            }
+            else {
+                ok = isAnswer(works.c0, event);
+            }
+        } while (!ok);
+         step_2.question=works.c00;
+        if(event==1) {
+            step_2.answer=works.c1;
+        } else if (event==2) {
+            step_2.answer=works.c2;
+        } else {
+            step_2.answer=-1;
+        }
+        answers[1]=step_2;
+        switch (event) {
+            case 1: // Второе действие
+                do {
+                    ok = false;
+                    event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+                    if (event == -1) {
+                        break;
+                    }
+                    else {
+                        ok = isAnswer(works.d0, event);
+                    }
+                } while (!ok);
+                step_3.question=works.d00;
+                    if(event==1) {
+                        step_3.answer=works.d1;
+                    } else {
+                        step_3.answer=works.d2;
+                    }
+                answers[2]=step_3;
+                break;
+            case 2: // Второе действие
+                do {
+                    ok = false;
+                    event = +prompt(works.d00 + works.d1 + works.d2 + '-1 - Выход из игры');
+                    if (event == -1) {
+                        break;
+                    }
+                    else {
+                        ok = isAnswer(works.d0, event);
+                    }
+                } while (!ok);
+                step_3.question=works.d00;
+                    if(event==1) {
+                        step_3.answer=works.d1;
+                    } else if (event==2) {
+                        step_3.answer=works.d2;
+                    } else {
+                        step_3.answer=-1;
+                    }
+                answers[2]=step_3;
+                break;
+            case -1: // Второе действие
+                break;
+            default:
+                alert('Ошибка');
+        }
+        break;
+    case -1: // Первое действие
+        break;
+    default:
+        alert('Ошибка');
+}
+alert('Спасибо за игру');
+
+var desireKnowHistory = +prompt("Желаете ли знать историю ответов? 1 - да, -1 - нет");
+        if (desireKnowHistory==-1) {
+            alert("до свидания!")
+        } else {
+            var numberStep = +prompt("Введите номер интересующего шага 1 - шаг №1, 2 - шаг №2, 3 - шаг №3, -1 - уйти");
+            switch(numberStep) {
+                case 1:
+                    alert("вопрос " + answers[0].question + "ответ "  + answers[0].answer);
+                    break;
+                case 2:
+                    alert("вопрос " + answers[1].question + "ответ " + answers[1].answer);
+                    break;
+                case 3:
+                    alert("вопрос " + answers[2].question + "ответ " + answers[2].answer);
+                    break;
+                case -1:
+                    alert("до свидания");
+                    break;
+                default:
+                    alert("вы ввели некорректные данные");
+            }
+        }
+        
+//------------------------------------------
+function isAnswer(q, event) {
+    if (isNaN(event) || !isFinite(event)) {
+        alert('Вы ввели недопустимый символ');
+        return false;
+    }
+    else if (event < 1 || event > q) {
+        alert('Ваше число выходит из допустимого диапозона');
+        return false;
+    }
+	return true;
+    
+}
+
+//ex№3 (game million)
+var million = [
+    {
+        question: "сколько раз я трахал Ларису Петровну - первую учительницу моего троюродного дедушки?",
+        option1: 2,
+        option2: 10,
+        option3: 30,
+        option4: 25,
+        correctAnswer: 4
+    },
+    
+    {
+        question: "сколько литров водки я выжрал на последние новогодние?",
+        option1: 2,
+        option2: 1,
+        option3: 3,
+        option4: 2.5,
+        correctAnswer: 3
+    },
+    
+    {
+        question: "по чем была гречка в АТБ в прошлую среду?",
+        option1: 20,
+        option2: 10,
+        option3: 30,
+        option4: 25,
+        correctAnswer: 3
+    },
+    
+    {
+        question: "сколько лет назад я закончил школу",
+        option1: 20,
+        option2: 10,
+        option3: 30,
+        option4: 25,
+        correctAnswer: 2
+    }
+]
+    var sum=0;
+    var i=0;
+for (item of million) {
+    
+    do {
+        ok = false;
+        var answerPlayer = + prompt("вопрос " + item.question + " вариант№1 " + item.option1 + " вариант№2 " + item.option2 + " вариант№3 " + item.option3 + " вариант№4 " + item.option4 + " введите 1, 2 , 3 или 4" );
+        if (answerPlayer==-1) {
+            alert("good bye");
+            break;
+        } else {
+            ok = correctAns(4, answerPlayer);
+        }
+        
+    } while (!ok);
+        
+    i += 1;
+    if (i==1) {
+        sum+=150000;
+    } else {
+        sum*=2;
+    }
+    if (answerPlayer==item.correctAnswer && i<million.length) {
+        alert("Поздравляю! Сумма денег " + sum);
+    }
+    else if (i==million.length && answerPlayer==item.correctAnswer) {
+        alert("сволочь, ты выиграл. подавись - " + sum);
+    }
+     else {
+        alert("вы проиграли! до свидос!");
+        break;
+    }
+    
+}
+    
+function correctAns (num, answer) {
+ if (!isFinite(answer)||isNaN(answer)) {
+    alert("вы ввели недопустимое число!");
+    return false;
+} else if (answer<1 || answer>num) {
+    return false;
+    }
+return true;
+}
+        
+    </script>
+</body>
+</html>
