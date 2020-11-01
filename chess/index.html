@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chess</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+   <div></div>
+    <script>
+        var figure ={
+            0: ["л","к","о","ф","кор","о","к","л"],
+            1: ["п","п","п","п","п","п","п","п"],
+            6: ["п","п","п","п","п","п","п","п"],
+            7: ["л","к","о","ф","кор","о","к","л"]
+        }
+        var figure_icon ={
+            0:["&#9820","&#9822","&#9821","&#9819","&#9818","&#9821","&#9822","&#9820"],
+            1:["&#9823","&#9823","&#9823","&#9823","&#9823","&#9823","&#9823","&#9823"],
+            6:["&#9817","&#9817","&#9817","&#9817","&#9817","&#9817","&#9817","&#9817"],
+            7:["&#9814","&#9816","&#9815","&#9813","&#9812","&#9815","&#9816","&#9814"]
+        }
+        var table = document.createElement("table");
+        var td, tr;
+        var flag = false;
+        for (var i = 0; i<8; i++) {
+            tr = document.createElement("tr");
+            table.appendChild(tr);
+            for (var j=0; j<8; j++) {
+                if(j==0) flag=!flag;
+                td = document.createElement("td");
+                tr.appendChild(td);
+                td.style.border="1px solid black";
+                td.className="cell";
+                if (flag) {
+                    td.style.backgroundColor="yellow";
+                } else {
+                    td.style.backgroundColor="brown";
+                }
+                /*if (figure[i]!=undefined && figure[i][j]!=undefined) {
+                    
+                    td.innerText = figure[i][j];
+                    
+                     if(i<4) {
+                    td.style.color="black";
+                    td.style.textAlign="left";
+                     } else {
+                         td.style.color="white";
+                    td.style.textAlign="left";
+                     }*/
+                if (figure[i]!=undefined && figure[i][j]!=undefined) {
+                    
+                    
+                     
+                    td.innerHTML=figure_icon[i][j];
+                     td.style.textAlign="center";
+                    td.style.fontFamily="Arial";
+                    td.style.fontSize="46px";
+                
+                }
+                
+                flag=!flag;
+                
+            
+        }
+            
+            
+        
+        
+        
+        }
+        table.style.border="1px solid black";
+        table.style.borderCollapse="collapse";
+        document.querySelector("div").appendChild(table);
+    </script>
+</body>
+</html>

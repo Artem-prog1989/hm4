@@ -1,0 +1,17 @@
+.wrapper {
+    /*border: 1px solid black;*/
+    width: 560px;
+    
+}
+
+.cell {
+    width:70px;
+    height:70px;
+    border:1px solid black;
+}
+/*.white {
+    background-color: white;
+}
+.black {
+    background-color: black;*/
+}
