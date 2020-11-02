@@ -7,7 +7,7 @@
 .cell {
     width:70px;
     height:70px;
-    border:1px solid black;
+    border:none;
 }
 /*.white {
     background-color: white;
